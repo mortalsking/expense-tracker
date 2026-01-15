@@ -1,238 +1,339 @@
-/* CSS variables for light and dark modes */
-:root {
-    --background-color-light: #f5f7fa;
-    --container-background-light: #ffffff;
-    --text-color-light: #333333;
-    --button-background-light: #00bcd4; /* Vibrant cyan */
-    --button-hover-background-light: #0097a7; /* Darker cyan */
-    --edit-button-background-light: #ffeb3b; /* Vibrant yellow */
-    --delete-button-background-light: #f44336; /* Vibrant red */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
-    --background-color-dark: #121212;
-    --container-background-dark: #1e1e1e;
-    --text-color-dark: #e0e0e0;
-    --button-background-dark: #1e88e5; /* Vibrant blue */
-    --button-hover-background-dark: #1976d2; /* Darker blue */
-    --edit-button-background-dark: #ffeb3b; /* Vibrant yellow */
-    --delete-button-background-dark: #e57373; /* Lighter red */
+:root {
+    /* Color Palette - Light Mode */
+    --primary-h: 215;
+    --primary-s: 100%;
+    --primary-l: 60%;
+
+    --accent-h: 280;
+    --accent-s: 70%;
+    --accent-l: 60%;
+
+    --bg-main: hsl(var(--primary-h), 30%, 96%);
+    --bg-card: hsla(0, 0%, 100%, 0.7);
+    --text-main: hsl(var(--primary-h), 50%, 15%);
+    --text-muted: hsl(var(--primary-h), 20%, 45%);
+
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 20px 50px -12px rgba(0, 0, 0, 0.15);
+
+    --glass-bg: rgba(255, 255, 255, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.3);
+
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Default light mode colors */
+body.dark-mode {
+    --bg-main: hsl(var(--primary-h), 30%, 6%);
+    --bg-card: hsla(var(--primary-h), 30%, 12%, 0.7);
+    --text-main: hsl(var(--primary-h), 20%, 95%);
+    --text-muted: hsl(var(--primary-h), 15%, 70%);
+
+    --glass-bg: rgba(30, 30, 45, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.1);
+
+    --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: var(--background-color-light);
-    color: var(--text-color-light);
-    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+    padding: 2rem;
+    transition: var(--transition);
 }
 
 .container {
-    background: var(--container-background-light);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 600px;
-    max-height: 90vh;
-    overflow-y: auto;
-    text-align: center;
-    transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+@media (max-width: 850px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Glassmorphism Sidebar */
+.sidebar {
+    position: sticky;
+    top: 2rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-lg);
 }
 
 h1 {
-    margin-bottom: 20px;
-    font-size: 2rem;
-    font-weight: bold;
-    color: var(--text-color-light);
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, hsl(var(--primary-h), 100%, 50%), hsl(var(--accent-h), 100%, 60%));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
 }
 
+/* Form Styling */
 form {
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
+    gap: 1rem;
 }
 
-input, button {
-    margin: 10px 0;
-    padding: 12px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
-input:focus, button:focus {
+label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+input,
+select {
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--glass-border);
+    background: var(--bg-main);
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+input:focus,
+select:focus {
     outline: none;
-    border-color: var(--button-background-light);
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    border-color: hsl(var(--primary-h), 100%, 60%);
+    box-shadow: 0 0 0 3px hsla(var(--primary-h), 100%, 60%, 0.2);
 }
 
-button {
-    background-color: var(--button-background-light);
-    color: white;
+button[type="submit"] {
+    margin-top: 1rem;
+    padding: 0.875rem;
     border: none;
+    border-radius: var(--radius-sm);
+    background: linear-gradient(135deg, hsl(var(--primary-h), 100%, 60%), hsl(var(--primary-h), 100%, 50%));
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
+    transition: var(--transition);
+    box-shadow: 0 4px 12px hsla(var(--primary-h), 100%, 50%, 0.3);
 }
 
-button:hover {
-    background-color: var(--button-hover-background-light);
+button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px hsla(var(--primary-h), 100%, 50%, 0.4);
 }
 
-#expenses {
-    margin-top: 20px;
-    text-align: left;
+/* Dashboard & Content */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.stat-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--glass-border);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-card h3 {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.stat-card .value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: hsl(var(--primary-h), 80%, 50%);
+}
+
+/* Charts */
+.chart-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--glass-border);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+}
+
+/* Expense List */
+.expense-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .expense-day {
-    margin-bottom: 20px;
-    background: var(--container-background-light);
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    transition: background 0.3s ease-in-out;
+    margin-bottom: 1.5rem;
 }
 
 .expense-day h2 {
-    margin: 0 0 15px 0;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--text-color-light);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding-left: 0.5rem;
+    border-left: 4px solid hsl(var(--primary-h), 100%, 60%);
 }
 
-.expense {
+.expense-item {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-md);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: var(--container-background-light);
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-    transition: background 0.3s ease-in-out;
+    margin-bottom: 0.75rem;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
 }
 
-.expense span {
-    color: var(--text-color-light);
+.expense-item:hover {
+    box-shadow: var(--shadow-md);
+    background: var(--bg-card);
 }
 
-.expense button {
-    margin-left: 10px;
-    padding: 8px;
-    font-size: 14px;
+.expense-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.expense-desc {
+    font-weight: 600;
+}
+
+.expense-category {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    background: hsla(var(--primary-h), 30%, 50%, 0.1);
+    padding: 2px 8px;
+    border-radius: 12px;
+    width: fit-content;
+}
+
+.expense-amount {
+    font-weight: 700;
+    font-size: 1.125rem;
+}
+
+.actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-icon {
+    background: none;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
+    padding: 8px;
+    border-radius: 50%;
+    transition: var(--transition);
+    color: var(--text-muted);
 }
 
-.expense button.edit {
-    background-color: var(--edit-button-background-light);
-    color: black; /* Ensure text is readable */
+.btn-icon:hover {
+    background: hsla(0, 0%, 50%, 0.1);
 }
 
-.expense button.delete {
-    background-color: var(--delete-button-background-light);
-    color: white;
+.btn-icon.edit:hover {
+    color: #f59e0b;
 }
 
-.expense button:hover {
-    opacity: 0.9;
+.btn-icon.delete:hover {
+    color: #ef4444;
 }
 
-.theme-toggle-container {
+/* Theme Toggle */
+.theme-toggle-wrapper {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+}
+
+.theme-btn {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 20px 0;
+    box-shadow: var(--shadow-lg);
+    font-size: 1.5rem;
+    transition: var(--transition);
 }
 
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-    margin-right: 10px;
+.theme-btn:hover {
+    transform: rotate(15deg) scale(1.1);
 }
 
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 34px;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    border-radius: 50%;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-}
-
-input:checked + .slider {
-    background-color: var(--button-background-dark);
-}
-
-input:checked + .slider:before {
-    transform: translateX(26px);
-}
-
-.theme-label {
-    font-size: 16px;
-    color: var(--text-color-light);
-}
-
-/* Dark mode colors */
-body.dark-mode {
-    background: var(--background-color-dark);
-    color: var(--text-color-dark);
-}
-
-.container.dark-mode {
-    background: var(--container-background-dark);
-}
-
-h1.dark-mode {
-    color: var(--text-color-dark);
-}
-
-.expense-day.dark-mode {
-    background: var(--container-background-dark);
-}
-
-.expense.dark-mode {
-    background: var(--container-background-dark);
-    border: 1px solid #444444;
-}
-
-.expense span.dark-mode {
-    color: var(--text-color-dark);
-}
-
-.expense button.edit.dark-mode {
-    background-color: var(--edit-button-background-dark);
-}
-
-.expense button.delete.dark-mode {
-    background-color: var(--delete-button-background-dark);
+.expense-item {
+    animation: fadeIn 0.3s ease-out forwards;
 }

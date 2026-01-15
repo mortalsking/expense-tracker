@@ -1,53 +1,36 @@
-🔍 Project Explanation: **Expense Tracker Web App**
+# Modern Expense Tracker
 
-🧠 Overview:
+A feature-rich, interactive web application for managing personal finances. Built with a focus on modern design and user experience, this dashboard provides a clear overview of spending habits through real-time data visualization and persistent tracking.
 
-This is a **simple and interactive Expense Tracker** built using **HTML, CSS, and JavaScript**, enhanced with **Chart.js** to visualize daily expenses. It lets users:
+**Live Demo**: [https://expense-tracker-72fwx9bkf-mortalskings-projects.vercel.app](https://expense-tracker-72fwx9bkf-mortalskings-projects.vercel.app)
 
-- Add, view, edit, and delete daily expenses.
-- Automatically group expenses by date.
-- Switch between light and dark themes.
-- Visualize total daily expenses on a **line chart** with dynamic colors.
+## Core Features
 
+- **Modern Dashboard UI**: A refined design using glassmorphism effects, HSL-based color tokens, and smooth micro-animations.
+- **Real-Time Statistics**: Instant tracking of total balance and monthly spending through dynamic stat cards.
+- **Interactive Data Visualization**: Integrated Chart.js line charts that adapt to both light and dark modes.
+- **Category Support**: Organize expenses into specific categories like Food, Travel, Rent, and Entertainment for better insights.
+- **Local Storage Persistence**: All data is stored locally in the browser, ensuring your information remains available across sessions.
+- **Dark Mode Support**: A fully integrated dark theme with automatic color adjustments for accessibility and style.
+- **Responsive Layout**: Designed to work seamlessly across mobile, tablet, and desktop devices.
 
-📁 **File Structure & Roles:**
+## Project Structure
 
-1. **index.html**:
+- `index.html`: Defines the dashboard structure, including the sidebar form, stat grid, and chart container.
+- `styles.css`: Implements the modern design system, glassmorphism effects, and responsive grid layouts.
+- `scripts.js`: Manages application logic, including expense CRUD operations, dashboard calculations, and Chart.js integration.
 
-- Creates the structure of the webpage.
-    
-- Includes:
-    
-    - Input form (Date, Description, Amount).
-    - Div to display expenses.
-    - Toggle for dark mode.
-    - Canvas element for the chart.
-    - Links to `styles.css` and `scripts.js`.
-    
+## Getting Started
 
- 2. **styles.css**:
+1. Clone or download the repository.
+2. Open `index.html` in any modern web browser.
+3. Start tracking your expenses by adding them through the sidebar form.
 
-- Defines styles for light and dark modes using CSS variables.
-- Styles the form, buttons, expenses list, chart area, and theme toggle switch.
-- Includes responsive design and smooth transition effects.
-    
+## Technologies Used
 
- 3. **scripts.js**:
-
-    - Handles **logic and interactivity**:
-    - `addExpense()` to collect and store input.
-    - `displayExpenses()` to show daily grouped expenses.
-    - `editExpense()` and `deleteExpense()` for expense management.
-    - `setupChart()` and `updateChart()` using Chart.js.
-    - `toggleTheme()` switches between light/dark modes and adjusts chart colors accordingly.
-        
-
-### 🧪 Features:
-
-- ✅ Add expense with date, description, and amount.
-- ✅ Edit/Delete entries.
-- ✅ Auto-grouping by date.
-- ✅ Dark Mode switch.
-- ✅ Real-time updating chart (Chart.js).
-- ✅ Data point color changes based on value (`> ₹2000 = red`).
-    
+- HTML5
+- CSS3 (Custom Properties, Flexbox, Css Grid)
+- Vanilla JavaScript (ES6+)
+- Chart.js for data visualization
+- Font Awesome for iconography
+- Google Fonts (Plus Jakarta Sans)
