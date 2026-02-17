@@ -3,28 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expense Tracker</title>
+    <title>Expense Tracker | Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <h1>Expense Tracker</h1>
-        <form id="expense-form">
-            <input type="date" id="date" required>
-            <input type="text" id="description" placeholder="Description" required>
-            <input type="number" id="amount" placeholder="Amount" required>
-            <button type="submit">Add Expense</button>
-        </form>
-        <div id="expenses"></div>
-        <div class="theme-toggle-container">
-            <label class="theme-label">Dark Mode</label>
-            <label class="switch">
-                <input type="checkbox" id="theme-toggle">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <canvas id="expenseChart"></canvas>
+        <!-- Sidebar with Form -->
+        <aside class="sidebar">
+            <h1><i class="fas fa-wallet"></i> Tracker</h1>
+            <form id="expense-form">
+                <div class="input-group">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="input-group">
+                    <label for="description">Description</label>
+                    <input type="text" id="description" placeholder="What did you buy?" required>
+                </div>
+                <div class="input-group">
+                    <label for="category">Category</label>
+                    <select id="category" required>
+                        <option value="Food">Food & Drinks</option>
+                        <option value="Travel">Travel</option>
+                        <option value="Rent">Rent & Bills</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Utilities">Utilities</option>
+                        <option value="Shopping">Shopping</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="amount">Amount (₹)</label>
+                    <input type="number" id="amount" placeholder="0.00" step="0.01" required>
+                </div>
+                <button type="submit">Add Expense</button>
+            </form>
+        </aside>
+
+        <!-- Main Content with Stats and List -->
+        <main class="main-content">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Balance</h3>
+                    <div class="value" id="total-balance">₹0.00</div>
+                </div>
+                <div class="stat-card">
+                    <h3>This Month</h3>
+                    <div class="value" id="month-total">₹0.00</div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="expenseChart"></canvas>
+            </div>
+
+            <div id="expenses" class="expense-section">
+                <!-- Grouped expenses will be injected here -->
+            </div>
+        </main>
     </div>
+
+    <!-- Theme Toggle -->
+    <div class="theme-toggle-wrapper">
+        <button id="theme-toggle" class="theme-btn" title="Toggle Theme">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="scripts.js"></script>
 </body>
