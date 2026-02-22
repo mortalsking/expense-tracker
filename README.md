@@ -2,7 +2,7 @@
 
 A feature-rich, interactive web application for managing personal finances. Built with a focus on modern design and user experience, this dashboard provides a clear overview of spending habits through real-time data visualization and persistent tracking.
 
-**Live Demo**: [https://expense-tracker-72fwx9bkf-mortalskings-projects.vercel.app](https://expense-tracker-72fwx9bkf-mortalskings-projects.vercel.app)
+**Live Demo**: https://expense-tracker-theta-self.vercel.app/
 
 ## Core Features
 
